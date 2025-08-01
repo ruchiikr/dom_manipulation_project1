@@ -1,9 +1,13 @@
-/* General Reset and Base */
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+}
+
+html {
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 body {
@@ -12,9 +16,13 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  background: url("img/project-1.jpg") no-repeat center center / cover;
+  background-image: url("img/project-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   padding: 1rem;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.6s ease-in-out;
 }
 
 /* Container */
@@ -34,6 +42,10 @@ body {
   border-radius: 5px;
 }
 
+.header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
 /* Main Content */
 .main-content {
   width: 100%;
@@ -44,13 +56,13 @@ body {
 }
 
 .text-area {
-  font-size: 1.3rem;
-  line-height: 1.5;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
   margin-bottom: 1rem;
 }
 
 .person {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: red;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -68,7 +80,7 @@ body {
 .button-area button {
   background-color: #262626;
   color: #fff;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   border: none;
@@ -96,17 +108,17 @@ body {
   display: none;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-  .text-area {
-    font-size: 1rem;
+/* Small Screen Tweaks */
+@media (max-width: 400px) {
+  .container {
+    padding: 0.5rem;
   }
 
-  .person {
-    font-size: 1rem;
+  .main-content {
+    padding: 1.2rem;
   }
 
-  .header {
-    font-size: 1.2rem;
+  .tooltip {
+    font-size: 0.7rem;
   }
 }

@@ -1,8 +1,11 @@
-// Variables
-let btn = document.querySelector('#new-quote');
-let quote = document.querySelector('.quote');
-let person = document.querySelector('.person');
+// DOM Elements
+const btn = document.querySelector('#new-quote');
+const copyBtn = document.querySelector('#copy-quote');
+const quote = document.querySelector('.quote');
+const person = document.querySelector('.person');
+const tooltip = document.querySelector('#tooltip');
 
+// Quotes
 const quotes = [
   {
     quote: "The best way to find yourself is to lose yourself in the service of others.",
@@ -46,9 +49,44 @@ const quotes = [
   }
 ];
 
-// Event Listener
-btn.addEventListener('click', function () {
-  let random = Math.floor(Math.random() * quotes.length);
+// Background Images
+const backgrounds = [
+  "img/project-1.jpg",
+  "img/bg2.jpg",
+  "img/bg3.jpg",
+  "img/bg4.jpg",
+  "img/bg5.jpg"
+];
+
+let lastIndex = -1;
+
+// Show New Quote
+btn.addEventListener('click', () => {
+  let random;
+  do {
+    random = Math.floor(Math.random() * quotes.length);
+  } while (random === lastIndex);
+  lastIndex = random;
+
   quote.innerText = quotes[random].quote;
   person.innerText = quotes[random].person;
+
+  changeBackgroundImage();
 });
+
+// Copy Quote
+copyBtn.addEventListener('click', () => {
+  const fullQuote = `"${quote.innerText}" — ${person.innerText}`;
+  navigator.clipboard.writeText(fullQuote).then(() => {
+    tooltip.classList.remove('hidden');
+    setTimeout(() => {
+      tooltip.classList.add('hidden');
+    }, 1500);
+  });
+});
+
+// Change Background Image
+function changeBackgroundImage() {
+  const index = Math.floor(Math.random() * backgrounds.length);
+  document.body.style.backgroundImage = `url(${backgrounds[index]})`;
+}
